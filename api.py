@@ -42,11 +42,14 @@ def get_conn():
 
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['POST', 'OPTIONS'])
 def login():
     conn = None
     cur = None
     try:
+        if request.method == 'OPTIONS':
+            return '', 200
+        
         conn = get_conn()
         cur = conn.cursor()
         data = request.get_json()
@@ -87,7 +90,7 @@ def login():
 
 
 
-@app.route('/logout', methods=["GET"])
+@app.route('/logout', methods=["GET", 'OPTIONS'])
 def logout():
     session.pop('USER_ID', None)
     return '', 204 
@@ -136,11 +139,14 @@ def get_current_user():
             conn.close()
 
 
-@app.route('/countries/update', methods=['PUT'])
+@app.route('/countries/update', methods=['PUT', 'OPTIONS'])
 def update_country():
     conn = None
     cur = None
     try:
+        if request.method == 'OPTIONS':
+            return '', 200
+        
         response = get_current_user()
 
         user = response.get_json() 
@@ -195,6 +201,9 @@ def get_countries():
     conn = None
     cur = None
     try:
+        if request.method == 'OPTIONS':
+             return '', 200
+        
         conn = get_conn()
         cur = conn.cursor()
         data = request.get_json()

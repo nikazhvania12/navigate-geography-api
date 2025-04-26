@@ -14,7 +14,9 @@ with open("config.json") as data:
 
 FLAGS_FOLDER = os.path.join(os.getcwd(), 'Resources')
 
-CORS(app, supports_credentials=True, origins=[appData['frontend_url'], appData['frontend_url_local']], methods=["GET", "POST", "OPTIONS", "PUT"])
+CORS(app, resources={r"/*": {"origins": "*"}})
+
+# CORS(app, supports_credentials=True, origins=[appData['frontend_url'], appData['frontend_url_local']], methods=["GET", "POST", "OPTIONS", "PUT"])
 
 app.secret_key = appData["app_key"]
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'

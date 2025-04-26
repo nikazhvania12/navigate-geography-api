@@ -1,14 +1,22 @@
 {
-    "dbProperties": {
+    "dbPropertiesLocal": {
         "dbName": "postgres",
         "user": "postgres",
         "password":"App2025#",
         "host":"localhost",
         "port":5432
     },
+    "dbPropertiesProd": {
+        "dbName": "navigate_geography_db",
+        "user": "navigate_geography_db_user",
+        "password":"FTxCbAhjeWcBR29dcPDYJKUKAbzwpr5z",
+        "host":"dpg-d06300ruibrs73e67ts0-a",
+        "port":5432
+    },
     "app" : {
         "app_key": "d4a9c25f7e3c4a729ae5c6b179e48319ad9943c4a1080e6cc4d27f3c5e10a7b8",
         "frontend_url": "https://navigate-geography.netlify.app",
-        "frontend_url_local": "http://127.0.0.1:3000"
+        "frontend_url_local": "http://127.0.0.1:3000",
+        "isLocal": false
     }
 }

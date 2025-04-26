@@ -8,7 +8,8 @@ app = Flask(__name__)
 
 with open("config.json") as data:
     jsonData = json.load(data) 
-    dbData = jsonData["dbProperties"]
+    dbDataLocal = jsonData["dbPropertiesLocal"]
+    dbDataProd = jsonData["dbPropertiesProd"]
     appData = jsonData["app"]
 
 FLAGS_FOLDER = os.path.join(os.getcwd(), 'Resources')
@@ -20,13 +21,22 @@ app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 app.config['SESSION_COOKIE_SECURE'] = False
 
 def get_conn():
-    return psycopg2.connect(
-        dbname=dbData["dbName"],
-        user=dbData["user"],
-        password=dbData["password"],
-        host=dbData["host"],
-        port=dbData["port"]
-    )
+    if appData["isLocal"]:
+        return psycopg2.connect(
+            dbname=dbDataLocal["dbName"],
+            user=dbDataLocal["user"],
+            password=dbDataLocal["password"],
+            host=dbDataLocal["host"],
+            port=dbDataLocal["port"]
+        )
+    else:
+        return psycopg2.connect(
+            dbname=dbDataProd["dbName"],
+            user=dbDataProd["user"],
+            password=dbDataProd["password"],
+            host=dbDataProd["host"],
+            port=dbDataProd["port"]
+        )
 
 
 

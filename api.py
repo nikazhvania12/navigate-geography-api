@@ -14,11 +14,16 @@ with open("config.json") as data:
 
 FLAGS_FOLDER = os.path.join(os.getcwd(), 'Resources')
 
-CORS(app, resources={r"/*": {"origins": "*", "supports_credentials": True}})
-
-# CORS(app, supports_credentials=True, origins=[appData['frontend_url'], appData['frontend_url_local']], methods=["GET", "POST", "OPTIONS", "PUT"])
+CORS(app,
+     supports_credentials=True,
+     resources={
+         r"/*": {
+             "origins": [appData['frontend_url'], appData['frontend_url_local']]
+         }
+     })
 
 app.secret_key = appData["app_key"]
+
 if appData["isLocal"]:
     app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
     app.config['SESSION_COOKIE_SECURE'] = False

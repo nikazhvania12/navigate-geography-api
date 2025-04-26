@@ -12,7 +12,8 @@ with open("config.json") as data:
     appData = jsonData["app"]
 
 FLAGS_FOLDER = os.path.join(os.getcwd(), 'Resources')
-CORS(app, supports_credentials=True, origins=["http://127.0.0.1:3000"])
+
+CORS(app, supports_credentials=True, origins=[appData['fontend_url'], appData['frontend_url_local']])
 
 app.secret_key = appData["app_key"]
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
@@ -285,5 +286,8 @@ def get_country_by_name(cur, name):
     return result
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))

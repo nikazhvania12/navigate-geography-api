@@ -2,11 +2,13 @@
     "dbProperties": {
         "dbName": "postgres",
         "user": "postgres",
-        "password":"#Nika2306",
+        "password":"App2025#",
         "host":"localhost",
         "port":5432
     },
     "app" : {
-        "app_key": "d4a9c25f7e3c4a729ae5c6b179e48319ad9943c4a1080e6cc4d27f3c5e10a7b8"
+        "app_key": "d4a9c25f7e3c4a729ae5c6b179e48319ad9943c4a1080e6cc4d27f3c5e10a7b8",
+        "fontend_url": "https://navigate-geography.netlify.app",
+        "frontend_url_local": "http://127.0.0.1:3000"
     }
 }

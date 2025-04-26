@@ -190,7 +190,7 @@ def update_country():
             conn.close()
 
 
-@app.route('/countries/get', methods=['POST'])
+@app.route('/countries/get', methods=['POST', "OPTIONS"])
 def get_countries():
     conn = None
     cur = None

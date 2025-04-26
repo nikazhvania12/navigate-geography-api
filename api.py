@@ -95,7 +95,7 @@ def logout():
 
 
 
-@app.route('/currentUser', methods=["GET"])
+@app.route('/currentUser', methods=["GET", "OPTIONS"])
 def get_current_user():
     conn = None
     cur = None

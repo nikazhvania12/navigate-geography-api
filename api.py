@@ -19,8 +19,12 @@ CORS(app, resources={r"/*": {"origins": "*", "supports_credentials": True}})
 # CORS(app, supports_credentials=True, origins=[appData['frontend_url'], appData['frontend_url_local']], methods=["GET", "POST", "OPTIONS", "PUT"])
 
 app.secret_key = appData["app_key"]
-app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
-app.config['SESSION_COOKIE_SECURE'] = False
+if appData["isLocal"]:
+    app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
+    app.config['SESSION_COOKIE_SECURE'] = False
+else: 
+    app.config['SESSION_COOKIE_SAMESITE'] = 'None'
+    app.config['SESSION_COOKIE_SECURE'] = True
 
 def get_conn():
     if appData["isLocal"]:
